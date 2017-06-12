@@ -1,0 +1,8 @@
+# Backend
+jwt-spring-boot/.idea
+jwt-spring-boot/etc
+jwt-spring-boot/target
+
+# FrontEnd
+jwt-angular2/node_modules
+archive
