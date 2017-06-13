@@ -4,8 +4,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { provideAuth } from 'angular2-jwt';
+import { NgRedux, NgReduxModule } from 'ng2-redux';
 
 // import { AUTH_PROVIDERS } from 'angular2-jwt';
+
+import { IAppState, rootReducer, INITIAL_STATE } from './store';
 
 import { AuthGuard } from './common/auth.guard';
 import { AppComponent } from './app.component';
@@ -29,6 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgReduxModule,
     RouterModule.forRoot(routes, {
       useHash: true
     })
@@ -44,4 +48,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux< IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
